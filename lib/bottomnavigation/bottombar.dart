@@ -32,7 +32,7 @@ class BottomNavigationBarClassState extends State<BottomNavigationBarClass> {
                   ? Icons.access_alarm // Filled icon for selected
                   : Icons.access_alarm_outlined, // Outlined icon for unselected
             ),
-            label: 'Namoz Vaqtlari',
+            label: 'Prayer Times',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -40,7 +40,7 @@ class BottomNavigationBarClassState extends State<BottomNavigationBarClass> {
                   ? Icons.circle // Filled icon for selected
                   : Icons.circle_outlined, // Outlined icon for unselected
             ),
-            label: 'Tasbeh',
+            label: 'Tasbih',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -48,7 +48,7 @@ class BottomNavigationBarClassState extends State<BottomNavigationBarClass> {
                   ? Icons.settings // Filled icon for selected
                   : Icons.settings_outlined, // Outlined icon for unselected
             ),
-            label: 'Sozlamalar',
+            label: 'Settings',
           ),
         ],
         currentIndex: _currentIndex,

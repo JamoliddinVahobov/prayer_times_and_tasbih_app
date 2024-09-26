@@ -77,7 +77,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
           child: FittedBox(
             fit: BoxFit.scaleDown,
             child: Text(
-              'TASBEH HISOBLAGICH',
+              'TASBIH COUNTER',
               style: TextStyle(
                   letterSpacing: 1,
                   color: Colors.white,
@@ -141,7 +141,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                       children: [
                         const FittedBox(
                           child: Text(
-                            "Umumiy Hisob",
+                            "Total Count",
                             style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w500,
@@ -169,13 +169,14 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                 builder: (BuildContext context) {
                                   return AlertDialog(
                                     title: const FittedBox(
-                                        child: Text(
-                                      "O'chirishni tasdiqlash",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600),
-                                    )),
+                                      child: Text(
+                                        "Confirm Reset",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                    ),
                                     content: const Text(
-                                      "Umumiy tasbeh hisobini o'chirishni xohlaysizmi?",
+                                      "Do you want to reset the total tasbih count?",
                                       style: TextStyle(fontSize: 18),
                                     ),
                                     actions: [
@@ -184,8 +185,8 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                           Navigator.of(context).pop();
                                         },
                                         child: const Text(
-                                          "Yo'q",
-                                          style: TextStyle(fontSize: 18),
+                                          "Cancel",
+                                          style: TextStyle(fontSize: 15),
                                         ),
                                       ),
                                       TextButton(
@@ -194,8 +195,8 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                           Navigator.of(context).pop();
                                         },
                                         child: const Text(
-                                          "Ha",
-                                          style: TextStyle(fontSize: 18),
+                                          "Reset",
+                                          style: TextStyle(fontSize: 15),
                                         ),
                                       ),
                                     ],
@@ -214,7 +215,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                 child: FittedBox(
                                   child: Text(
                                     textAlign: TextAlign.center,
-                                    "Umumiy sanoqni\n o'chirish",
+                                    "Reset Total\nCount",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       color: Colors.white,
@@ -248,7 +249,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                             EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                         child: FittedBox(
                           child: Text(
-                            "O'CHIRISH",
+                            "RESET",
                             style: TextStyle(
                               letterSpacing: 2,
                               fontSize: 25,
@@ -265,11 +266,11 @@ class _TasbihScreenState extends State<TasbihScreen> {
             ],
           ),
           Container(
-            width: width * 0.3, // Inner container width (responsive)
-            height: width * 0.3, // Inner container height
+            width: width * 0.3,
+            height: width * 0.3,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.amber, // Inner container color
+              color: Colors.amber,
               border: Border.all(width: 5, color: Colors.green.shade800),
             ),
             child: Padding(

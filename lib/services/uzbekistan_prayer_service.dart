@@ -14,7 +14,7 @@ class UzbPrayerService {
       } else if (response.statusCode == 404) {
         return null; // City not found
       } else {
-        throw Exception("Namoz vaqtlarini yuklashda xatolik yuz berdi");
+        throw Exception("An error occurred while loading prayer times");
       }
     } catch (e) {
       return null;

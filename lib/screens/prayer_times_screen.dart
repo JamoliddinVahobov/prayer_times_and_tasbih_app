@@ -16,8 +16,8 @@ class PrayerTimesScreen extends StatefulWidget {
 }
 
 class PrayerTimesScreenState extends State<PrayerTimesScreen> {
-  String selectedOption = "O'zbekiston";
-  String citySearch = "Qo'qon";
+  String selectedOption = "Uzbekistan";
+  String citySearch = "Toshkent";
   InternationalPrayerTimes? internationalPrayerTimes;
   UzbPrayerTimes? uzbPrayerTimes;
   String errorMessage = '';
@@ -39,7 +39,7 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
   }
 
   void updateCityController() {
-    cityController.text = selectedOption == "O'zbekiston" ? "Qo'qon" : "Makka";
+    cityController.text = selectedOption == "Uzbekistan" ? "Toshkent" : "Mecca";
   }
 
   Timer? _errorTimer;
@@ -74,7 +74,7 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
     if (connectivityResult == ConnectivityResult.none) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Internet aloqasi mavjud emas")),
+          const SnackBar(content: Text("No internet connection")),
         );
       }
       return;
@@ -85,11 +85,11 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
     });
 
     try {
-      if (selectedOption == "O'zbekiston") {
+      if (selectedOption == "Uzbekistan") {
         uzbPrayerTimes = await uzbService.fetchUzbPrayerTimes(address);
         if (uzbPrayerTimes == null) {
           setErrorMessageWithTimer(
-              "Shahar topilmadi. Iltimos,Shahar nomini to'g'ri yozing");
+              "City not found. Please enter the correct city name");
           return;
         }
       } else {
@@ -97,7 +97,7 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
             await internationalService.fetchInternationalPrayerTimes(address);
         if (internationalPrayerTimes == null) {
           setErrorMessageWithTimer(
-              "Shahar topilmadi. Iltimos,Shahar nomini to'g'ri yozing");
+              "City not found. Please enter the correct city name");
           return;
         }
       }
@@ -125,11 +125,11 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
       appBar: AppBar(
         title: const Padding(
           padding: EdgeInsets.only(left: 10),
-          child: FittedBox(child: Text("Namoz Vaqtlari")),
+          child: FittedBox(child: Text("Prayer Times")),
         ),
       ),
       body: RefreshIndicator(
-        color: Colors.blue[700], // Use primary color for the refresh indicator
+        color: Colors.blue[700],
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         onRefresh: () async {
           await fetchPrayerTimes(citySearch);
@@ -146,21 +146,21 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
                   icon: const Icon(Icons.arrow_drop_down, size: 30),
                   items: const [
                     DropdownMenuItem(
-                      value: "O'zbekiston",
+                      value: "Uzbekistan",
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
-                          "O'zbekiston",
+                          "Uzbekistan",
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
                     ),
                     DropdownMenuItem(
-                      value: "Xalqaro",
+                      value: "International",
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.0),
                         child: Text(
-                          "Xalqaro",
+                          "International",
                           style: TextStyle(fontSize: 18),
                         ),
                       ),
@@ -172,7 +172,7 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
                       cityController.clear();
                       updateCityController();
                       citySearch =
-                          selectedOption == "O'zbekiston" ? "Qo'qon" : "Makka";
+                          selectedOption == "Uzbekistan" ? "Toshkent" : "Mecca";
                       fetchPrayerTimes(citySearch);
                     });
                   },
@@ -183,12 +183,12 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: TextField(
                   controller: cityController,
-                  focusNode: _focusNode, // Assign the focus node
+                  focusNode: _focusNode,
                   decoration: InputDecoration(
-                    labelText: "Shahar nomini kiriting",
-                    hintText: selectedOption == "O'zbekiston"
-                        ? "Masalan, Farg'ona"
-                        : "Masalan, Madina",
+                    labelText: "Enter city name",
+                    hintText: selectedOption == "Uzbekistan"
+                        ? "For example, Fergana"
+                        : "For example, Medina",
                     prefixIcon: const Icon(Icons.location_city),
                     suffixIcon: IconButton(
                       icon: const Icon(Icons.search),
@@ -198,30 +198,25 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
                     fillColor: Theme.of(context).colorScheme.surface,
                     labelStyle: TextStyle(
                       color: _focusNode.hasFocus
-                          ? context
-                              .textFieldFocusBorderColor // Blue when focused
-                          : context
-                              .textFieldLabelColor, // Default color when not focused
+                          ? context.textFieldFocusBorderColor
+                          : context.textFieldLabelColor,
                     ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: context
-                            .textFieldBorderColor, // Use the extension for border color
+                        color: context.textFieldBorderColor,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: context
-                            .textFieldFocusBorderColor, // Use the extension for focus border color
+                        color: context.textFieldFocusBorderColor,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide(
-                        color: context
-                            .textFieldBorderColor, // Use the extension for enabled border color
+                        color: context.textFieldBorderColor,
                       ),
                     ),
                     errorText: errorMessage.isEmpty ? null : errorMessage,
@@ -241,51 +236,51 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
               ),
               const SizedBox(height: 12.0),
               Expanded(
-                child: selectedOption == "O'zbekiston" && uzbPrayerTimes != null
+                child: selectedOption == "Uzbekistan" && uzbPrayerTimes != null
                     ? ListView(
                         children: [
                           _buildPrayerTimeTile(
-                              "Bomdod:", uzbPrayerTimes!.times.tongSaharlik),
+                              "Fajr:", uzbPrayerTimes!.times.tongSaharlik),
                           _buildPrayerTimeTile(
-                              "Quyosh:", uzbPrayerTimes!.times.quyosh),
+                              "Sunrise:", uzbPrayerTimes!.times.quyosh),
                           _buildPrayerTimeTile(
-                              "Peshin:", uzbPrayerTimes!.times.peshin),
+                              "Dhuhr:", uzbPrayerTimes!.times.peshin),
                           _buildPrayerTimeTile(
                               "Asr:", uzbPrayerTimes!.times.asr),
                           _buildPrayerTimeTile(
-                              "Shom:", uzbPrayerTimes!.times.shomIftor),
+                              "Maghrib:", uzbPrayerTimes!.times.shomIftor),
                           _buildPrayerTimeTile(
-                              "Hufton:", uzbPrayerTimes!.times.hufton),
-                          _buildPrayerTimeTile("Sana:", uzbPrayerTimes!.date),
+                              "Isha:", uzbPrayerTimes!.times.hufton),
+                          _buildPrayerTimeTile("Date:", uzbPrayerTimes!.date),
                           _buildPrayerTimeTile(
-                              "Hafta kuni:", uzbPrayerTimes!.weekday),
+                              "Day of week:", uzbPrayerTimes!.weekday),
                           _buildPrayerTimeTile(
-                            "Hijri Sana:",
+                            "Hijri Date:",
                             "${uzbPrayerTimes!.hijriDate.month} ${uzbPrayerTimes!.hijriDate.day}",
                           ),
                         ],
                       )
-                    : selectedOption == "Xalqaro" &&
+                    : selectedOption == "International" &&
                             internationalPrayerTimes != null
                         ? ListView(
                             children: [
-                              _buildPrayerTimeTile("Bomdod:",
+                              _buildPrayerTimeTile("Fajr:",
                                   internationalPrayerTimes!.timings.fajr),
-                              _buildPrayerTimeTile("Peshin:",
+                              _buildPrayerTimeTile("Dhuhr:",
                                   internationalPrayerTimes!.timings.dhuhr),
                               _buildPrayerTimeTile("Asr:",
                                   internationalPrayerTimes!.timings.asr),
-                              _buildPrayerTimeTile("Shom:",
+                              _buildPrayerTimeTile("Maghrib:",
                                   internationalPrayerTimes!.timings.maghrib),
-                              _buildPrayerTimeTile("Hufton:",
+                              _buildPrayerTimeTile("Isha:",
                                   internationalPrayerTimes!.timings.isha),
-                              _buildPrayerTimeTile("Hijriy Sana:",
+                              _buildPrayerTimeTile("Hijri Date:",
                                   internationalPrayerTimes!.hijri.date),
-                              _buildPrayerTimeTile("Hijriy Oy:",
+                              _buildPrayerTimeTile("Hijri Month:",
                                   internationalPrayerTimes!.hijri.month),
-                              _buildPrayerTimeTile("Milodiy Sana:",
+                              _buildPrayerTimeTile("Gregorian Date:",
                                   internationalPrayerTimes!.gregorian.date),
-                              _buildPrayerTimeTile("Milodiy Oy:",
+                              _buildPrayerTimeTile("Gregorian Month:",
                                   internationalPrayerTimes!.gregorian.month),
                             ],
                           )

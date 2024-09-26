@@ -16,7 +16,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       appBar: AppBar(
         title: const Padding(
           padding: EdgeInsets.only(left: 10),
-          child: FittedBox(child: Text('Sozlamalar')),
+          child: FittedBox(child: Text('Settings')),
         ),
         automaticallyImplyLeading: false,
       ),
@@ -25,7 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         child: ListView(
           children: [
             SwitchListTile(
-              title: const Text("Rejimni o'zgartirish"),
+              title: const Text("Change Theme"),
               value: Provider.of<ThemeNotifier>(context)
                   .isDarkMode, // Boolean value for the switch
               onChanged: (bool value) {
