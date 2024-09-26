@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
       return MaterialApp(
         debugShowCheckedModeBanner: true,
-        title: 'Namoz Vaqtlari va Tasbeh',
+        title: 'Prayer Times and Tasbih',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.deepPurple,
