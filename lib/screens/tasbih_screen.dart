@@ -130,7 +130,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                   margin: const EdgeInsets.only(left: 20, right: 10),
                   decoration: BoxDecoration(
                     color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(15),
+                    borderRadius: BorderRadius.circular(20),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
@@ -155,7 +155,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                             maxLines: 1,
                             total.toString(),
                             style: const TextStyle(
-                              fontSize: 25,
+                              fontSize: 30,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -186,7 +186,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                         },
                                         child: const Text(
                                           "Cancel",
-                                          style: TextStyle(fontSize: 15),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ),
                                       TextButton(
@@ -196,7 +196,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                         },
                                         child: const Text(
                                           "Reset",
-                                          style: TextStyle(fontSize: 15),
+                                          style: TextStyle(fontSize: 16),
                                         ),
                                       ),
                                     ],
@@ -204,20 +204,22 @@ class _TasbihScreenState extends State<TasbihScreen> {
                                 });
                           },
                           child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 2),
                             decoration: BoxDecoration(
                               color: Colors.orange[600],
-                              borderRadius: BorderRadius.circular(10),
+                              borderRadius: BorderRadius.circular(15),
                             ),
                             child: const Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 5),
+                                    horizontal: 5, vertical: 10),
                                 child: FittedBox(
                                   child: Text(
                                     textAlign: TextAlign.center,
-                                    "Reset Total\nCount",
+                                    "Reset Total Count",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
+                                      fontSize: 16,
                                       color: Colors.white,
                                     ),
                                   ),
@@ -237,7 +239,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                   margin: const EdgeInsets.only(left: 10, right: 20),
                   decoration: BoxDecoration(
                     color: Colors.grey[900],
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(15),
                   ),
                   child: InkWell(
                     onTap: () {
@@ -280,7 +282,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                   child: Text(
                     number.toString(),
                     style: const TextStyle(
-                      fontSize: 45,
+                      fontSize: 50,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
