@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
     return Consumer<ThemeNotifier>(builder: (context, themeNotifier, child) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Prayer Times and Tasbih',
+        title: 'Prayer Times and Tasbih Counter',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.deepPurple,
