@@ -119,6 +119,20 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
     fetchPrayerTimes(citySearch);
   }
 
+  final Map<String, String> uzbekToEnglishWeekdays = {
+    "Dushanba": "Monday",
+    "Seshanba": "Tuesday",
+    "Chorshanba": "Wednesday",
+    "Payshanba": "Thursday",
+    "Juma": "Friday",
+    "Shanba": "Saturday",
+    "Yakshanba": "Sunday",
+  };
+
+  String getEnglishWeekday(String uzbekWeekday) {
+    return uzbekToEnglishWeekdays[uzbekWeekday] ?? uzbekWeekday;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,47 +149,50 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
           await fetchPrayerTimes(citySearch);
         },
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(18, 5, 18, 20),
+          padding: const EdgeInsets.fromLTRB(18, 0, 18, 20),
           child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: DropdownButton<String>(
-                  value: selectedOption,
-                  isExpanded: true,
-                  icon: const Icon(Icons.arrow_drop_down, size: 30),
-                  items: const [
-                    DropdownMenuItem(
-                      value: "Uzbekistan",
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          "Uzbekistan",
-                          style: TextStyle(fontSize: 18),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: DropdownButton<String>(
+                    value: selectedOption,
+                    icon: const Icon(Icons.arrow_drop_down, size: 30),
+                    items: const [
+                      DropdownMenuItem(
+                        value: "Uzbekistan",
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "Uzbekistan",
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ),
-                    ),
-                    DropdownMenuItem(
-                      value: "International",
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Text(
-                          "International",
-                          style: TextStyle(fontSize: 18),
+                      DropdownMenuItem(
+                        value: "International",
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.0),
+                          child: Text(
+                            "International",
+                            style: TextStyle(fontSize: 18),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                  onChanged: (value) {
-                    setState(() {
-                      selectedOption = value!;
-                      cityController.clear();
-                      updateCityController();
-                      citySearch =
-                          selectedOption == "Uzbekistan" ? "Toshkent" : "Mecca";
-                      fetchPrayerTimes(citySearch);
-                    });
-                  },
+                    ],
+                    onChanged: (value) {
+                      setState(() {
+                        selectedOption = value!;
+                        cityController.clear();
+                        updateCityController();
+                        citySearch = selectedOption == "Uzbekistan"
+                            ? "Toshkent"
+                            : "Mecca";
+                        fetchPrayerTimes(citySearch);
+                      });
+                    },
+                  ),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -187,7 +204,7 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
                   decoration: InputDecoration(
                     labelText: "Enter city name",
                     hintText: selectedOption == "Uzbekistan"
-                        ? "For example, Fergana"
+                        ? "For example, Farg'ona"
                         : "For example, Medina",
                     prefixIcon: const Icon(Icons.location_city),
                     suffixIcon: IconButton(
@@ -253,7 +270,9 @@ class PrayerTimesScreenState extends State<PrayerTimesScreen> {
                               "Isha:", uzbPrayerTimes!.times.hufton),
                           _buildPrayerTimeTile("Date:", uzbPrayerTimes!.date),
                           _buildPrayerTimeTile(
-                              "Day of week:", uzbPrayerTimes!.weekday),
+                            "Day of week:",
+                            getEnglishWeekday(uzbPrayerTimes!.weekday),
+                          ),
                           _buildPrayerTimeTile(
                             "Hijri Date:",
                             "${uzbPrayerTimes!.hijriDate.month} ${uzbPrayerTimes!.hijriDate.day}",

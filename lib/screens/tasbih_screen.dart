@@ -268,8 +268,8 @@ class _TasbihScreenState extends State<TasbihScreen> {
             ],
           ),
           Container(
-            width: width * 0.3,
-            height: width * 0.3,
+            width: width * 0.25,
+            height: width * 0.25,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.amber,
@@ -282,7 +282,7 @@ class _TasbihScreenState extends State<TasbihScreen> {
                   child: Text(
                     number.toString(),
                     style: const TextStyle(
-                      fontSize: 50,
+                      fontSize: 45,
                       fontWeight: FontWeight.w600,
                       color: Colors.black,
                     ),
@@ -292,10 +292,10 @@ class _TasbihScreenState extends State<TasbihScreen> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(bottom: height * 0.08),
+            padding: EdgeInsets.only(bottom: height * 0.07),
             child: Container(
-              width: width * 0.5,
-              height: width * 0.5,
+              width: width * 0.45,
+              height: width * 0.45,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(width: 5, color: Colors.green.shade800),
@@ -308,8 +308,8 @@ class _TasbihScreenState extends State<TasbihScreen> {
                       incrementCounter();
                     },
                     child: Container(
-                      width: width * 0.5 * 0.90,
-                      height: width * 0.5 * 0.90,
+                      width: width * 0.45 * 0.91,
+                      height: width * 0.45 * 0.91,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.green[800],
